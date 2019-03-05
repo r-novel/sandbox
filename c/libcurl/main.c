@@ -7,7 +7,6 @@ void usage() {
 }
 
 int main(int argc, char** argv) {
-
   if (argc < 2) {
     usage();
     return 0;
@@ -17,26 +16,20 @@ int main(int argc, char** argv) {
   FILE* fd;
 	CURLcode res;
   char *location;
-  long response_code;
+  unsigned resp;
 	curl_easy_setopt(handle, CURLOPT_URL, argv[1]);
 	res = curl_easy_perform(handle);
 
 	if (res != CURLE_OK)
-		fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
+		fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
 	else {
-      res = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
-      if((res == CURLE_OK) &&
-         ((response_code / 100) != 3)) {
-        /* a redirect implies a 3xx response code */ 
+      res = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &resp);
+      if((res == CURLE_OK) && ((resp / 100) != 3))
         fprintf(stderr, "Not a redirect.\n");
-      }
       else {
         res = curl_easy_getinfo(handle, CURLINFO_REDIRECT_URL, &location);
- 
         if((res == CURLE_OK) && location) {
         	fd = fopen("./downloaded", "w");
-
           curl_easy_setopt(handle, CURLOPT_URL, location);
           curl_easy_setopt(handle, CURLOPT_WRITEDATA, fd);
           curl_easy_perform(handle);
