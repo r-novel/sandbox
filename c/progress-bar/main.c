@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+
+#ifdef _WIN32_
+	#include <windows.h>
+#else
+	#include <unistd.h>
+#endif
 
 #define block "█";
 #define prefix "[\033[1;35m\t\tProgress:\033[0m [\033[1;32m"
@@ -11,7 +16,12 @@ static void move(double in) {
 		printf("█");
 	printf("%s\033[1;35m%.2f%%\r\033[0m", suffix, in);
 	fflush(stdout);
-	sleep(1);
+
+	#ifdef _WIN32_
+		Sleep(1000);
+	#else
+		sleep(1);
+	#endif
 }
 
 void Do(double step) {
