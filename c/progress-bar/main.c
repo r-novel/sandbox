@@ -13,7 +13,7 @@
 
 static void move(double in) {
 	for(int i = 0; i < in; ++i)
-		printf("█");
+		printf("%s", block);
 	printf("%s\033[1;35m%.2f%%\r\033[0m", suffix, in);
 	fflush(stdout);
 
