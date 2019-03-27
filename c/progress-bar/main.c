@@ -7,7 +7,7 @@
 	#include <unistd.h>
 #endif
 
-#define block "█";
+#define block "█"
 #define prefix "[\033[1;35m\t\tProgress:\033[0m [\033[1;32m"
 #define suffix "\033[0m] "
 
