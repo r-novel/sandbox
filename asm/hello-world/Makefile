@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 AS := nasm
 ASFLAGS := -f macho64
-LDFLAGS := -macosx_version_min 10.12 -lSystem
+LDFLAGS := -macosx_version_min $(shell sw_vers | egrep -o '([0-9]{1,}\.)+[0-9]{1,}') -lSystem
 LD := ld
 
 PATH-PROJECT := $(shell pwd)
