@@ -34,7 +34,7 @@ struct ex5_t {
 	uint8_t d;
 };
 
-int main(int argc, char const *argv[]) {
+void dump() {
 	printf("\nfirst example struct:\n"
 		"\tstruct { \n"
 			"\tuint64_t a - %zd bytes;\n"
@@ -87,6 +87,10 @@ int main(int argc, char const *argv[]) {
 					sizeof(uint32_t), sizeof(uint8_t));
 
 	printf("full size of struct: %zd\n", sizeof(struct ex5_t));
+}
+
+int main(int argc, char const *argv[]) {
+	dump();
 
 	return 0;
 }
