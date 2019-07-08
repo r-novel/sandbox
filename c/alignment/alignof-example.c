@@ -7,6 +7,6 @@
 })
 
 int main(int argc, char const *argv[]) {
-	printf("align of int is %zd\n", alignof(int))
+	printf("align of int is %zd\n", alignof(int));
 	return 0;
 }
