@@ -7,7 +7,7 @@
 
 int main(void) {
 	int fd;
-	char * myfifo = "/tmp/tmp_fifo";
+	char* myfifo = "/tmp/tmp_fifo";
 
 	mkfifo(myfifo, 0666);
 
