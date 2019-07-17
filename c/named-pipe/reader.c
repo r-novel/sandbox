@@ -10,7 +10,11 @@ int main(void) {
 
 	char* myfifo = "/tmp/tmp_fifo";
 
-	mkfifo(myfifo, 0666);
+	int ok = mkfifo(myfifo, 0666);
+	if (ok < 0) {
+		fprintf(stderr, "%s\n", "error with mkfifo;");
+		return -1;
+	}
 
 	char buf_1[80], buf_2[80];
 	while (1) {
