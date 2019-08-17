@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <stdint.h>
 
+
+/*
+        FLV HEADER                                         FLV BODY
+    +---------------+  +--------+--------+--------+--------+     +-----------+--------+---------+
+    |               |  |  prev  |  flv   |  prev  |  flv   |     |  prev     |  flv   |  prev   |
+    |               |  |  tag   |  tag   |  tag   |  tag   | ... |  tag      |  tag   |  tag    |
+    |               |  |  size0 |   #1   |  size1 |  #2    |     |  sizeN-1  |  #N    |  sizeN  |
+    +---------------+  +--------+--------+--------+--------+     +-----------+--------+---------+
+
+*/
+
+
 #pragma pack(push, 1)
 typedef struct {
     uint8_t                         signature[3];
@@ -32,18 +44,17 @@ typedef struct {
 
 
 typedef struct {
-    uint8_t                           frame_type:4;
-    uint8_t                           codec_id:4;
-    void                             *video_data;
+    uint8_t                         frame_type:4;
+    uint8_t                         codec_id:4;
+    void                           *video_data;
 } flv_video_data_t;
 
 typedef struct {
-    uint8_t                           avc_packet_type;
-    int32_t                           composition_time;
-    void                             *data;
+    uint8_t                         avc_packet_type;
+    int32_t                         composition_time;
+    void                           *data;
 } flv_video_avc_packet_t;
 #pragma pack(pop)
-
 
 
 int main(int argc, char** argv) {
