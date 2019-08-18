@@ -12,6 +12,28 @@
 
 */
 
+enum flv_tag_types {
+    AUDIODATA           = 0x8,
+    VIDEODATA           = 0x9,
+    SCRIPTDATAOBJECT    = 0x12
+};
+
+enum flv_sound_format {
+    LinearPCM           = 0x0,      /* platform endian */
+    ADPCM               = 0x1,
+    MP3                 = 0x2,
+    LinearPCM_le        = 0x3,      /* little endian */
+    Nellymoser_16kHz    = 0x4,
+    Nellymoser_8kHz     = 0x5,
+    Nellymoser          = 0x6,
+    G711_A_law          = 0x7,
+    G711_mu_law         = 0x8,
+    Reserved            = 0x9,
+    AAC                 = 0xA,
+    Speex               = 0xB,
+    MP3_8kHz            = 0xE,
+    dev_spec_sound      = 0xF
+};
 
 #pragma pack(push, 1)
 typedef struct {
