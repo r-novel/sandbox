@@ -53,3 +53,7 @@ dkms.conf
 
 #
 bin/*
+elm-lang/001-start/yarn.lock
+elm-lang/001-start/node_modules/*
+elm-lang/001-start/*.js
+elm-lang/001-start/elm-stuff/*

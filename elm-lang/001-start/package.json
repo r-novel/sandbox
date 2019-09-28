@@ -1,0 +1,11 @@
+{
+	"name": "001-start",
+	"version": "0.0.1",
+	"description": "Simple elm lang example with incr and decr operations;",
+	"main": "index.js",
+	"license": "GNU/GPLv3",
+	"scripts": {
+		"build": "elm make src/Main.elm --output=index.js",
+		"build:dev": "elm-live src/Main.elm --host=127.0.0.1 --port=1024 --open --start-page=index.html -- --output=index.js"
+	}
+}
