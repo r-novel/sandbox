@@ -1,12 +1,13 @@
 package main
 
 import (
-	"flag"
 	"io"
 	"log"
 	"net"
 	"os"
 	"strconv"
+
+	flag "github.com/spf13/pflag"
 )
 
 func main() {
