@@ -117,15 +117,15 @@ int consume_event(struct parser_state_t* s, yaml_event_t* event)
 		case YAML_SCALAR_EVENT:
 			s->value = (char*)event->data.scalar.value;
 			if (strcmp(s->key, "login") == 0) {
-				s->data.name = strdup((char*)s->value);
+				s->data.login = strdup((char*)s->value);
 			} else if (strcmp(s->key, "password") == 0) {
-				s->data.color = strdup((char*)s->value);
+				s->data.pasword = strdup((char*)s->value);
 			} else if (strcmp(s->key, "shell") == 0) {
-				s->data.color = strdup((char*)s->value);
+				s->data.shell = strdup((char*)s->value);
 			} else if (strcmp(s->key, "uid") == 0) {
-				s->data.count = atoi(s->value);
+				s->data.uid = atoi(s->value);
 			} else if (strcmp(s->key, "guid") == 0) {
-				s->data.count = atoi(s->value);
+				s->data.guid = atoi(s->value);
 			} else {
 				fprintf(stderr, "Ignoring unknown key: %s\n", s->key);
 			}
@@ -150,7 +150,7 @@ int main(int argc, char** argv)
 {
 	yaml_parser_t parser;
 	yaml_event_t event;
-	struct parser_state state = {.state=START, .accepted=0, .error=0};
+	struct parser_state_t state = {.state=START, .accepted=0, .error=0};
 	struct user_t data[64];
 	int i = 0;
 
