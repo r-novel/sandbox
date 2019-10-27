@@ -1,0 +1,21 @@
+users:
+  - login: John
+    password: abcd123
+    shell: /bin/sh
+    uid: 123
+    guid: 13
+  - login: Robert
+    password: 1234
+    shell: /bin/bash
+    uid: 506
+    guid: 10
+  - login: Normann
+    password: qwerty
+    shell: /bin/zsh
+    uid: 400
+    guid: 13
+  - login: Nick
+    password: bbb
+    shell: /bin/sh
+    uid: 111
+    guid: 10

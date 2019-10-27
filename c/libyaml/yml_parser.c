@@ -119,7 +119,7 @@ int consume_event(struct parser_state_t* s, yaml_event_t* event)
 			if (strcmp(s->key, "login") == 0) {
 				s->data.login = strdup((char*)s->value);
 			} else if (strcmp(s->key, "password") == 0) {
-				s->data.pasword = strdup((char*)s->value);
+				s->data.password = strdup((char*)s->value);
 			} else if (strcmp(s->key, "shell") == 0) {
 				s->data.shell = strdup((char*)s->value);
 			} else if (strcmp(s->key, "uid") == 0) {
@@ -165,6 +165,7 @@ int main(int argc, char** argv)
 		if (!consume_event(&state, &event)) {
 			goto error;
 		}
+
 		if (state.accepted && i < sizeof(data)/sizeof(*data)) {
 			data[i].login = state.data.login;
 			data[i].password = state.data.password;
