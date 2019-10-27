@@ -5,31 +5,31 @@
 
 
 struct user_t {
-	char*           	login;
-	char*				password;
-	int 				uid;
-	int 				guid;
-	char* 				shell;
+	char*           				login;
+	char*										password;
+	int 										uid;
+	int 										guid;
+	char* 									shell;
 };
 
 enum state_t {
-						START,
-						ACCEPT_SECTION,
-						ACCEPT_LIST,
-						ACCEPT_VALUES,
-						ACCEPT_KEY,
-						ACCEPT_VALUE,
-						STOP,
-						ERROR,
+													START,
+													ACCEPT_SECTION,
+													ACCEPT_LIST,
+													ACCEPT_VALUES,
+													ACCEPT_KEY,
+													ACCEPT_VALUE,
+													STOP,
+													ERROR,
 };
 
 struct parser_state_t {
-	enum 				state_t state;
-	int 				accepted;
-	int 				error;
-	char*				key;
-	char*				value;
-	struct user_t 		data;
+	enum 										state_t state;
+	int 										accepted;
+	int 										error;
+	char*										key;
+	char*										value;
+	struct user_t 					data;
 };
 
 int consume_event(struct parser_state_t* s, yaml_event_t* event)
@@ -57,7 +57,7 @@ int consume_event(struct parser_state_t* s, yaml_event_t* event)
 	case ACCEPT_SECTION:
 		switch (event->type) {
 		case YAML_SCALAR_EVENT:
-			if (strcmp((char*)event->data.scalar.value, "user") == 0) {
+			if (strcmp((char*)event->data.scalar.value, "users") == 0) {
 			   s->state = ACCEPT_LIST;
 			} else {
 			   fprintf(stderr, "Unexpected scalar: %s\n",
