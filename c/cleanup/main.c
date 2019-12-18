@@ -3,6 +3,15 @@
 
 #define TMP "/tmp/test-tmp.file"
 
+void wait()
+{
+  int c;
+	while ((c = getchar()) != EOF) {
+   	if (c == 's')
+   		break;
+	}
+}
+
 void __free_buf(char **buf)
 {
   printf("freeing buffer;\n");
@@ -24,12 +33,14 @@ int main(int argc, char **argv)
   FILE *fp __attribute__ ((__cleanup__(__free_file)));
 
   fp = fopen(TMP, "w+");
-  if(fp) fprintf(fp, "%s", "ATestlinewithnospacesandother");
+  if (fp) fprintf(fp, "%s", "ATestlinewithnospacesandother");
 
   fflush(fp);
   fseek(fp, 0L, SEEK_SET);
   fscanf(fp, "%s", buf);
   printf("%s\n", buf);
+
+  wait();
 
   return 0;
 }
