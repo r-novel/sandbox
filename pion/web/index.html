@@ -1,0 +1,48 @@
+<div id="remoteVideos"></div> <br />
+Local base64 SDP: <textarea id="localSessionDescription" readonly="true"></textarea> <br />
+Remote base64 SDP: <textarea id="remoteSessionDescription"> </textarea> <br/>
+
+<script>
+let log = msg => {
+  document.getElementById('div').innerHTML += msg + '<br>'
+}
+
+let pc = new RTCPeerConnection()
+
+pc.ontrack = function (event) {
+  var el = document.createElement(event.track.kind)
+  el.srcObject = event.streams[0]
+  el.autoplay = true
+  el.controls = true
+
+  document.getElementById('remoteVideos').appendChild(el)
+}
+
+pc.oniceconnectionstatechange = e => log(pc.iceConnectionState)
+
+pc.onicecandidate = event => {
+  if (event.candidate === null) {
+    document.getElementById('localSessionDescription').value = btoa(pc.localDescription.sdp)
+    $.post("/receive", { data:btoa(pc.localDescription.sdp)} ,function(data){
+      document.getElementById('remoteSessionDescription').value = data
+      window.startSession()
+    });
+  }
+}
+
+pc.createOffer({offerToReceiveVideo: true, offerToReceiveAudio: true}).then(d => pc.setLocalDescription(d)).catch(log)
+
+window.startSession = () => {
+  let sd = document.getElementById('remoteSessionDescription').value
+   console.log(atob(sd))
+  if (sd === '') {
+    return alert('Session Description must not be empty')
+  }
+
+  try {
+    pc.setRemoteDescription(new RTCSessionDescription({type: 'answer', sdp: atob(sd)}))
+  } catch (e) {
+    alert(e)
+  }
+}
+</script>
