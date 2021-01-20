@@ -1,3 +1,4 @@
+! gfortran main.f90 -o out -fopenmp
 program omp_hw
 	use omp_lib
 
