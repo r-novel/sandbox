@@ -8,4 +8,4 @@ program omp_hw
 		print *, "from process: ", OMP_GET_THREAD_NUM()
 	!$OMP END PARALLEL
 
-end program
+end program omp_hw
