@@ -5,12 +5,8 @@ import (
 	"os"
 )
 
-func tmpDirs() (out []string) {
-	out = append(out, "tmp-01")
-	out = append(out, "tmp-02")
-	out = append(out, "tmp-03")
-
-	return
+func tempDirs() (out []string) {
+	return append(out, "tmp-01", "tmp-02", "tmp-03")
 }
 
 func good() {
@@ -42,7 +38,7 @@ func bad() {
 		})
 	}
 
-	log.Println("directories have created;")
+	log.Println("directories have removed;")
 
 	for _, rmdir := range rmdirs {
 		rmdir()
